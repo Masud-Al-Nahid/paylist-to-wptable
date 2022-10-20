@@ -3,24 +3,16 @@ import csv
 html_output = ''
 names = []
 
-with open('patrons.csv', 'r') as data_file:
+#This 'my_list.csv' file have bunch line of data list 
+with open('my_list.csv', 'r') as data_file:
     csv_data = csv.DictReader(data_file)
-
-    # We don't want first line of bad data
-    next(csv_data)
-
+    #Ingredients is header name
     for line in csv_data:
-        if line['FirstName'] == 'No Reward':
+        if line['Ingredients'] == 'No Reward':
             break
-        names.append(f"{line['FirstName']} {line['LastName']}")
-
-html_output += f'<p>There are currently {len(names)} public contributors. Thank You!</p>'
-
-html_output += '\n<ul>'
+        names.append(f"{line['Ingredients']}")
 
 for name in names:
-    html_output += f'\n\t<li>{name}</li>'
-
-html_output += '\n</ul>'
+    html_output += f'\n\t <li>{name}</li>'
 
 print(html_output)
