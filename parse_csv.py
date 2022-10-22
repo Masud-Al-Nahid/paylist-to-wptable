@@ -41,4 +41,6 @@ for name in names:
         writer = csv.writer(f)
         header = ['Ingredients']
         writer.writerow(header)
-        writer.writerow(html_output)
+        for x in range(0,7):
+            writer.writerow(html_output)
+              
