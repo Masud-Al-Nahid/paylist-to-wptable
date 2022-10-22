@@ -1,9 +1,10 @@
+import requests
+from subprocess import list2cmdline
 import csv
 import json
-from subprocess import list2cmdline
+
 html_output = []
 names = []
-
 
 def pylist_to_list(list):
     temp_list = ['<ul>']
@@ -20,10 +21,7 @@ with open('my_list.csv', 'r') as data_file:
     csv_data = csv.DictReader(data_file)
     # Ingredients is header name
     for line in csv_data:
-        if line['Ingredients'] == 'No Reward':
-            break
         names.append(f"{line['Ingredients']}")
-
 
 for name in names:
     name = name.replace(']', '').replace('[', '').replace('\'', '"')
@@ -37,10 +35,9 @@ for name in names:
 
     single_element = pylist_to_list(ingredient_list)
     html_output.append(single_element)
-
+    
+for row in html_output:
     with open('final.csv', 'w') as f:
-        for line in f:
-            writer = csv.writer(line)
-            writer.writerow(html_output[0])     
+        writer = csv.writer(f)
+        writer.writerow(html_output)
 print(html_output[0])
-
