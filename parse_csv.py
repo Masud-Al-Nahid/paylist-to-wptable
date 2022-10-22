@@ -36,8 +36,9 @@ for name in names:
     single_element = pylist_to_list(ingredient_list)
     html_output.append(single_element)
     
-for row in html_output:
-    with open('final.csv', 'w') as f:
+#for row in html_output:
+    with open('final.csv', 'w', encoding='utf8', newline='') as f:
         writer = csv.writer(f)
+        header = ['Ingredients']
+        writer.writerow(header)
         writer.writerow(html_output)
-print(html_output[0])
