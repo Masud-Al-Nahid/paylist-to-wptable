@@ -1,3 +1,5 @@
+from email import header
+from sre_constants import RANGE
 import requests
 from subprocess import list2cmdline
 import csv
@@ -35,15 +37,14 @@ for name in names:
 
     single_element = pylist_to_list(ingredient_list)
     html_output.append(single_element)
+
+with open('final.csv', 'w') as f:
+    writer = csv.writer(f)
+    header =['Ingredient']
+    writer.writerow(header)
+    for item in html_output:
+        writer.writerow([item])
+        
+
+
     
-#for row in html_output:
-    with open('final.csv', 'w', encoding='utf8', newline='') as f:
-        writer = csv.writer(f)
-        header = ['Ingredients']
-        writer.writerow(header)
-         #7 row entry have in csv file
-        for x in range(0,7):
-            writer.writerow(html_output)
-
-print(html_output[0])
-
